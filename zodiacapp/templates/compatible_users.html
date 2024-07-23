@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Suderinami nariai</h2>
+  <div>
+    {% for profile in page_obj %}
+      <div>
+        <img class="user-profile-img" src="{{ profile.user.userprofile.profile_picture.url }}" alt="{{ profile.user.username }}">
+        {% if user.is_authenticated %}
+          <p><a href="{% url 'profile-detail' profile.user.id %}">{{ profile.user.username }}</a> - {{ profile.zodiac }}</p>
+        {% else %}
+          <p>{{ profile.user.username }} - {{ profile.zodiac }}</p>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>No compatible users found.</p>
+    {% endfor %}
+  </div>
+  <div>
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; pirmas</a>
+            <a href="?page={{ page_obj.previous_page_number }}">atgal</a>
+        {% endif %}
+
+        <span class="current">
+            Puslapis {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">kitas</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+{% endblock %}

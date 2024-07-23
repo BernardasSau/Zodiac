@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Redaguoti profilį</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ profile_form.as_p }}
+        {{ status_form.as_p }}
+        <button class="btn btn-primary" type="submit">Išsaugoti</button>
+    </form>
+    <h2>Profiio paveiksliukas</h2>
+    {% if user.userprofile.profile_picture %}
+        <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
+    {% else %}
+        <img src="{% static 'default_profile_picture.png' %}" alt="Default Profile Picture">
+    {% endif %}
+</body>
+{% endblock %}

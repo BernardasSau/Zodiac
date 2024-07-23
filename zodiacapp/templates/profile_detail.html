@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ user_profile.user.username }} Profilis</h1>
+{% if user_profile.profile_picture %}
+    <img src="{{ user_profile.profile_picture.url }}" alt="Profile picture" width="100">
+{% endif %}
+<p>Miestas: {{ user_profile.location }}</p>
+<p>Apie mane: {{ user_profile.bio }}</p>
+<p>Gimimo data: {{ user_profile.date_of_birth }}</p>
+<p>Zodiako ženklas: {{ user_profile.zodiac }}</p>
+<p>Statusas: {{ user.relationship_status.status }}</p>
+<h2>Komentarai</h2>
+<ul>
+    {% for comment in comments %}
+    <li>{{ comment.user.username }}: {{ comment.text }} ({{ comment.created_at }})</li>
+    {% endfor %}
+</ul>
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Siųsti</button>
+</form>
+{% endblock %}
+

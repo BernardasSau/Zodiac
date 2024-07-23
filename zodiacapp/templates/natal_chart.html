@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<body>
+<h1></h1>
+<h1>Natalinė Diagrama</h1>
+{% if svg_data %}
+<div>
+    {{ svg_data|safe }}
+</div>
+{% else %}
+<p>No chart data available.</p>
+{% endif %}
+</body>
+<p>Apskritimas ir namai: diagrama suskirstyta į dvylika segmentų, vadinamų namais, kurie atspindi skirtingas gyvenimo
+    sritis. Kiekvienas namas yra sunumeruotas nuo 1 iki 12, paprastai pradedant nuo segmento, kuris gimimo metu atitinka
+    rytinį horizontą.
+
+    Zodiako ženklai: Išorinis diagramos žiedas rodo dvylika zodiako ženklų, nuo Avino (Ar) iki Žuvų (Pi). Šie ženklai
+    pastatomi atsižvelgiant į namus, atsižvelgiant į tikslų gimimo laiką ir vietą.
+
+    Planetų simboliai: Namų viduje matote simbolius, vaizduojančius skirtingas planetas ir dangaus kūnus:
+
+    Saulė (Su): atspindi jūsų esmę, ego ir asmenybę.
+    Mėnulis (Mo): valdo emocijas ir pasąmonę.
+    Merkurijus (Aš): susijęs su bendravimu ir intelektu.
+    Venera (Ve): susijusi su meile, grožiu ir vertybėmis.
+    Marsas (Ma): reiškia energiją, potraukį ir agresiją.
+    Jupiteris (Ju): simbolizuoja augimą, plėtrą ir išmintį.
+    Saturnas (Sa): susijęs su disciplina, pareigomis ir iššūkiais.
+    Uranas (Ur), Neptūnas (Ne) ir Plutonas (Pl): Tai yra kartų planetos, turinčios įtakos platesnėms gyvenimo temoms ir
+    visuomenės pokyčiams.
+    Šiaurinis mazgas (Ne) ir Pietų mazgas (Taigi): taškai, atspindintys karminio gyvenimo kelio kryptis.
+    Aspektų linijos: spalvotos linijos, jungiančios planetas, žymi skirtingus aspektus arba kampus, kuriuos planetos
+    sudaro viena su kita, nurodydamos, kaip šios energijos veikia kartu arba priešinasi viena kitai. Kiekviena spalva
+    paprastai reiškia skirtingą aspekto tipą, pvz., trijulę (harmoningą), kvadratą (iššūkį) arba opoziciją (konfliktą).
+
+    Papildomi simboliai:
+
+    Ascendantas (AS): zodiako ženklas, gimimo metu iškilęs rytų horizonte, svarbus asmeninei tapatybei.
+    Midheaven (MC): aukščiausias taškas diagramoje, atspindintis karjeros ir viešojo gyvenimo tikslus.
+    Asmeninė informacija: diagramoje taip pat paprastai yra asmeninė informacija, tokia kaip vardas, gimimo data ir
+    gimimo vieta, kuri yra labai svarbi apskaičiuojant tikslią planetų padėtį.
+
+    Norėdami interpretuoti šią diagramą, astrologai žiūri į šių elementų derinį, kad suprastų asmenybės bruožus,
+    gyvenimo iššūkius, stipriąsias, silpnąsias puses ir galimus gyvenimo įvykius. Kiekvienas elementas siūlo įžvalgas,
+    kurios yra sujungtos į visapusišką asmeninį profilį.</p>
+{% endblock %}
+

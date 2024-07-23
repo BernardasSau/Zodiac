@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<h1>Vartotojai</h1>
+<p>Mūsų vartotojų sąrašas:</p>
+<div class="user-container">
+    {% for user in page_obj %}
+    <div class="user-box">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'profile-detail' user.id %}">
+                {{ user.username }}
+            </a>
+        {% else %}
+            <span>{{ user.username }}</span>
+        {% endif %}
+        {% if user.userprofile.profile_picture %}
+            <img src="{{ user.userprofile.profile_picture.url }}" alt="{{ user.username }}'s profile picture" width="50">
+        {% else %}
+            <img src="{% static 'default_profile_picture.png' %}" alt="Default profile picture" width="50">
+        {% endif %}
+        <p>{{ user.userprofile.location }}</p>
+        {% if user.relationship_status %}
+            {% if user.relationship_status.color in "red,blue,green" %}
+                <p style="background-color: {{ user.relationship_status.color }}; color: white; padding: 5px;">
+                    Status: {{ user.relationship_status.status }}
+                </p>
+            {% else %}
+                <p style="background-color: {{ user.relationship_status.color }}; color: black; padding: 5px;">
+                    Status: {{ user.relationship_status.status }}
+                </p>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; pirmas</a>
+            <a href="?page={{ page_obj.previous_page_number }}">atgal</a>
+        {% endif %}
+
+        <span class="current">
+            Puslapis {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">sekantis</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a>
+        {% endif %}
+    </span>
+
+</div>
+<p></p>
+<div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'compatible_users' %}" method="get">
+            <button class="btn btn-primary" type="submit">Sužinoti suderinamus narius</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

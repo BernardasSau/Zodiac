@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Susisiekite su mumis{% endblock %}
+
+{% block content %}
+<h1>Susisiekite su mumis</h1>
+<form method="post" action="{% url 'contact' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Vardas:</label>
+        {{ form.name }}
+    </div>
+    <div class="form-group">
+        <label>El. paštas:</label>
+        {{ form.email }}
+    </div>
+    <div class="form-group">
+        <label>Tema:</label>
+        {{ form.subject }}
+    </div>
+    <div class="form-group">
+        <label>Žinutė:</label>
+        {{ form.message }}
+    </div>
+    <button class="btn btn-primary" type="submit">Siųsti</button>
+</form>
+{% endblock %}

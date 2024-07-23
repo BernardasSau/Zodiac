@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="welcome-section">
+    <hr>
+    <h2>Sveiki atvykę į zodiako ženklų pasaulį</h2>
+    <p>Čia galite atrasti savo dienos horoskopą ir giliau pažvelgti į savo natalines diagramas. Leiskite mums padėti jums atrasti, kaip žvaigždės paveikia jūsų gyvenimą ir suteikia įžvalgų į jūsų asmenybę bei ateitį.</p>
+    <p>Atraskite, ką žvaigždės turi pasakyti būtent Jums!</p>
+    <hr>
+</div>
+
+<div class="user-stats">
+    <p>Turime <span class="highlight">{{ num_users }}</span> portale užsiregistravusių vartotojų.</p>
+    <p>Vienišų vartotojų skaičius: <span class="highlight">{{ num_single_users }}</span></p>
+</div>
+
+{% endblock %}

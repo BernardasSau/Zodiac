@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Sveiki atvykę, {{ user.username }}!</h1>
+  <hr>
+  <h5>Pasitikrinkite savo šios dienos horoskopą.</h5>
+
+  <form method="post">
+    {% csrf_token %}
+    <label for="zodiac_sign">Pasirinkite savo žodiako ženklą:</label>
+    <select class="btn btn-primary" name="zodiac_sign" id="zodiac_sign">
+      <option value="">Pasirinkti...</option>
+      <option value="AVINAS">Avinas</option>
+      <option value="Jautis">Jautis</option>
+      <option value="Dvyniai">Dvyniai</option>
+      <option value="Vėžys">Vėžys</option>
+      <option value="Liūtas">Liūtas</option>
+      <option value="Mergelė">Mergelė</option>
+      <option value="Svarstyklės">Svarstyklės</option>
+      <option value="SKORPIONAS">Skorpionas</option>
+      <option value="Šaulys">Šaulys</option>
+      <option value="Ožiaragis">Ožiaragis</option>
+      <option value="Vandenis">Vandenis</option>
+      <option value="Žuvys">Žuvys</option>
+    </select>
+    <button class="btn btn-primary" type="submit">Gauti Horoskopą</button>
+  </form>
+
+  {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+  {% endif %}
+  <hr>
+  {% if horoscope_text %}
+    <h2>Jūsų horoskopas</h2>
+    <p>{{ horoscope_text }}</p>
+  {% endif %}
+  <hr>
+
+<div>
+  <a href="{% url 'generate_natal_chart' %}" class="btn btn-primary">Įvesti Natalinės Diagramos Duomenis</a>
+</div>
+<p></p>
+<div>
+  <a href="{% url 'edit-profile' %}" class="btn btn-primary">Redaguoti profilį</a>
+  <a href="{% url 'profile-detail' request.user.id %}" class="btn btn-primary">Peržiūrėti profilį</a>
+</div>
+
+{% endblock %}

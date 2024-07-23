@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Susisiekite su mumis{% endblock %}
+
+{% block content %}
+<body>
+    <h1>Generatuoti Natalinės Diagramos Duomenis</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Generuoti</button>
+    </form>
+</body>
+{% endblock %}
+
